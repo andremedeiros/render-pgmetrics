@@ -10,6 +10,8 @@ ENV PGHOST ""
 ENV PGUSER ""
 ENV PGPASSWORD ""
 
+RUN apk add --no-cache curl
+
 RUN curl -O -L https://github.com/rapidloop/pgmetrics/releases/download/v${PGMETRICS_VERSION}/pgmetrics_${PGMETRICS_VERSION}_linux_amd64.tar.gz && \
   tar xvf pgmetrics_${PGMETRICS_VERSION}_linux_amd64.tar.gz
 
