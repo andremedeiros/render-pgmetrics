@@ -18,5 +18,5 @@ RUN curl -O -L https://github.com/rapidloop/pgmetrics/releases/download/v${PGMET
 RUN curl -O -L https://github.com/rapidloop/pgdash/releases/download/v${PGDASH_VERSION}/pgdash_${PGDASH_VERSION}_linux_amd64.tar.gz && \
   tar xvf pgdash_${PGDASH_VERSION}_linux_amd64.tar.gz
 
-RUN ./pgmetrics_${PGMETRICS_VERSION}_linux_amd64/pgmetrics -f json | \
+RUN ./pgmetrics_${PGMETRICS_VERSION}_linux_amd64/pgmetrics --no-password -f json | \
   ./pgdash_${PGDASH_VERSION}_linux_amd64/pgdash -a ${PGDASH_API_KEY} report ${PGDASH_SERVER}
