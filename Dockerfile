@@ -12,4 +12,6 @@ RUN curl -O -L https://github.com/rapidloop/pgdash/releases/download/v${PGDASH_V
   tar xvf pgdash_${PGDASH_VERSION}_linux_amd64.tar.gz
 
 CMD ./pgmetrics_${PGMETRICS_VERSION}_linux_amd64/pgmetrics --no-password -f json | \
-  ./pgdash_${PGDASH_VERSION}_linux_amd64/pgdash -a ${PGDASH_API_KEY} report ${PGDASH_SERVER}
+  ./pgdash_${PGDASH_VERSION}_linux_amd64/pgdash -a ${PGDASH_API_KEY} report ${PGDASH_SERVER} && \
+  ./pgmetrics_${PGMETRICS_VERSION}_linux_amd64/pgmetrics -h ${PGBOUNCER_HOST} --no-password -f json pgbouncer | \
+  ./pgdash_${PGDASH_VERSION}_linux_amd64/pgdash -a ${PGDASH_API_KEY} report-pgbouncer ${PGDASH_SERVER} ${PGDASH_SERVER_BOUNCER}
